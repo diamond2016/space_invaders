@@ -1,0 +1,22 @@
+[project]
+name = "space-invaders"
+version = "2.0.0"
+description = "Space Invaders game implemented in Python using the Turtle graphics library"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+run = "app.main:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["app*"]
+
+[tool.setuptools.package-data]
+app = ["assets/*", "assets/piskel/*"]
+
