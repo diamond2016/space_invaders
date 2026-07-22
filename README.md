@@ -7,4 +7,4 @@ This is an example on small screen:
 
 Technology: Python (Turtle included)
 
-220726 updated folders structure (main in src/app) and added hook for back formatting
+220726 updated folders structure (main in src/app) and added hook for black formatting
