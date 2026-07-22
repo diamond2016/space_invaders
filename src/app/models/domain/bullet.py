@@ -1,5 +1,10 @@
 from turtle import Turtle
-from app.core.config import BULLET_BOTTOM_LIMIT, BULLET_COLLISION_DISTANCE, BULLET_MOVE_DISTANCE, BULLET_TOP_LIMIT
+from app.core.config import (
+    BULLET_BOTTOM_LIMIT,
+    BULLET_COLLISION_DISTANCE,
+    BULLET_MOVE_DISTANCE,
+    BULLET_TOP_LIMIT,
+)
 from app.assets import ASSET_PATH
 
 
@@ -16,20 +21,21 @@ class Bullet(Turtle):
                 self.bullet_type = bullet_type
                 self.screen.register_shape(f"{ASSET_PATH}/grenade.png")
                 self.shape(f"{ASSET_PATH}/grenade.png")
-            case _: return
-        
+            case _:
+                return
+
         self.penup()
         self.goto(bullet_position)
 
-    def go_down(self): # only for missiles, from aliens
-        if (self.ycor() > BULLET_BOTTOM_LIMIT):
+    def go_down(self):  # only for missiles, from aliens
+        if self.ycor() > BULLET_BOTTOM_LIMIT:
             new_y = self.ycor() - BULLET_MOVE_DISTANCE
             self.goto(self.xcor(), new_y)
         else:
             self.delete()
 
     def go_up(self):  # only for grenades, from gun
-        if (self.ycor() < BULLET_TOP_LIMIT):
+        if self.ycor() < BULLET_TOP_LIMIT:
             new_y = self.ycor() + BULLET_MOVE_DISTANCE
             self.goto(self.xcor(), new_y)
         else:
@@ -43,8 +49,9 @@ class Bullet(Turtle):
             case "grenade":
                 self.go_up()
                 bullets.append(self)
-            case _: return
-    
+            case _:
+                return
+
     def delete(self):
         self.hideturtle()
         self.clear()
@@ -52,10 +59,12 @@ class Bullet(Turtle):
     @staticmethod
     def collide_gun(gun, bullets):
         for bullet in bullets:
-            if bullet.distance(gun) < BULLET_COLLISION_DISTANCE and bullet.bullet_type == "missile":
+            if (
+                bullet.distance(gun) < BULLET_COLLISION_DISTANCE
+                and bullet.bullet_type == "missile"
+            ):
                 bullet.delete()
                 bullets.remove(bullet)
                 gun.delete()
-                return True 
+                return True
         return False
-

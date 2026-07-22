@@ -2,8 +2,9 @@ from turtle import Turtle
 from app.core.config import ALIEN_MOVE_DISTANCE
 from app.assets import ASSET_PATH
 
+
 class Alien(Turtle):
-    
+
     def __init__(self, alien_type, position):
         super().__init__()
         self.alien_type = alien_type
@@ -19,19 +20,20 @@ class Alien(Turtle):
             case "saucer1":
                 self.screen.register_shape(f"{ASSET_PATH}/saucer1.png")
                 self.shape(f"{ASSET_PATH}/saucer1.png")
-            case _: return
-        
+            case _:
+                return
+
         self.penup()
         self.goto(position)
         self.initial_position = position
 
     def go_left(self):
-        if (self.xcor() > self.initial_position[0] - ALIEN_MOVE_DISTANCE):
+        if self.xcor() > self.initial_position[0] - ALIEN_MOVE_DISTANCE:
             new_x = self.xcor() - ALIEN_MOVE_DISTANCE
             self.goto(new_x, self.ycor())
 
     def go_right(self):
-        if (self.xcor() < self.initial_position[0] + ALIEN_MOVE_DISTANCE):
+        if self.xcor() < self.initial_position[0] + ALIEN_MOVE_DISTANCE:
             new_x = self.xcor() + ALIEN_MOVE_DISTANCE
             self.goto(new_x, self.ycor())
 
@@ -48,4 +50,3 @@ class Alien(Turtle):
     def delete(self):
         self.hideturtle()
         self.clear()
-

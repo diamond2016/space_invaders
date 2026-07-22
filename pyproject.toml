@@ -6,8 +6,18 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = []
 
+[dependency-groups]
+dev = [
+    "black>=24.0.0",
+]
+
 [project.scripts]
 run = "app.main:main"
+
+[tool.black]
+line-length = 88
+target-version = ['py314']
+include = '\.pyi?$'
 
 [build-system]
 requires = ["setuptools", "wheel"]
