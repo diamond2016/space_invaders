@@ -1,6 +1,5 @@
 from turtle import Turtle
-from unittest import case
-from app.core.config import ALIEN_FIRE_TICK, ALIEN_MOVE_DISTANCE
+from app.core.config import ALIEN_MOVE_DISTANCE
 from app.assets import ASSET_PATH
 
 class Alien(Turtle):

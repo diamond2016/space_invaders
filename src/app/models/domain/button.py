@@ -1,6 +1,5 @@
 from turtle import Turtle
 from app.core.config import BUTTON_FONT, BUTTON_START_POS
-from app.assets import ASSET_PATH
 
 button_start = Turtle()
 button_start.hideturtle()

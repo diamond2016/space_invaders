@@ -1,4 +1,4 @@
-from turtle import Screen, Turtle
+from turtle import Screen
 from app.models.domain.alien_tile import Alien_Tile
 from app.models.domain.bullet import Bullet
 import time
