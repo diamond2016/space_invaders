@@ -1,8 +1,8 @@
 from app.core.config import (
     BULLET_COLLISION_DISTANCE,
     TILE_COLUMNS,
-    TILE_ROWS,
     TILE_LEFT_LIMIT,
+    TILE_ROWS,
     TILE_SEP_X,
     TILE_SEP_Y,
     TILE_TOP_LIMIT,

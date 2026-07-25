@@ -1,12 +1,18 @@
-from turtle import Screen
-import time
 import random
+import time
+from turtle import Screen
 
+from app.core.config import (
+    ALIEN_FIRE_TICK,
+    BULLET_MOVE_SPEED,
+    GUN_INITIAL_POSITION,
+    SCREEN_HEIGHT,
+    SCREEN_WIDTH,
+    print_config,
+)
 from app.models.domain.alien_tile import Alien_Tile
 from app.models.domain.bullet import Bullet
 from app.models.domain.gun import Gun
-from app.core.config import ALIEN_FIRE_TICK, BULLET_MOVE_SPEED, GUN_INITIAL_POSITION, SCREEN_WIDTH, SCREEN_HEIGHT, print_config
-
 
 screen = Screen()
 screen.bgcolor("black")

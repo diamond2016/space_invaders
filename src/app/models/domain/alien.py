@@ -1,6 +1,7 @@
 from turtle import Turtle
-from app.core.config import ALIEN_MOVE_DISTANCE
+
 from app.assets import ASSET_PATH
+from app.core.config import ALIEN_MOVE_DISTANCE
 
 
 class Alien(Turtle):

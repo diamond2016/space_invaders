@@ -1,12 +1,13 @@
 from turtle import Turtle
-from app.models.domain.bullet import Bullet
+
+from app.assets import ASSET_PATH
 from app.core.config import (
     GUN_INITIAL_POSITION,
     GUN_LEFT_LIMIT,
     GUN_MOVE_DISTANCE,
     GUN_RIGHT_LIMIT,
 )
-from app.assets import ASSET_PATH
+from app.models.domain.bullet import Bullet
 
 
 class Gun(Turtle):

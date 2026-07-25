@@ -33,7 +33,6 @@ def start_game():
     alien_tiles = Alien_Tile.create_alien_tiles()
     game_is_on = True
     gun.showturtle()
-    game_loop()
 
 
 def end_game():
@@ -60,7 +59,7 @@ def fire_missile(alien):
 
 
 def update_bullets():
-    global bullets, tiles, screen
+    global bullets
     for bullet in bullets:
         if bullet.isvisible() and bullet.bullet_type == "grenade":
             bullet.go_up()
@@ -92,8 +91,19 @@ def update_alien_positions():
         alien_fire_counter = 0
 
 
-def game_loop() -> None:
-    global game_is_on, screen, ball, paddle, gun
+def main() -> None:
+    print("Starting the game...")
+    print_config()
+
+    screen.onkey(gun.go_left, "Left")
+    screen.onkey(gun.go_right, "Right")
+    screen.onkey(start_game, "s")
+    screen.onkey(end_game, "q")
+    screen.onkey(fire_grenade, "space")
+    screen.listen()
+    print(
+        "Game started. Press 's' to start/restart the game, 'q' to quit, <space> to fire."
+    )
     while game_is_on:
         screen.update()
 
@@ -107,25 +117,8 @@ def game_loop() -> None:
             end_game()
 
         time.sleep(BULLET_MOVE_SPEED / 1000)
-        screen.exitonclick()
 
-
-def main() -> None:
-    screen.listen()
-    screen.onkey(gun.go_left, "Left")
-    screen.onkey(gun.go_right, "Right")
-
-    print("Starting the game...")
-    print_config()
-    screen.onkey(start_game, "s")
-    screen.onkey(end_game, "q")
-    screen.onkey(fire_grenade, "space")
-
-    screen.update()
-    print(
-        "Game started. Press 's' to start/restart the game, 'q' to quit, <space> to fire."
-    )
-    game_loop()
+    screen.exitonclick()
 
 
 if __name__ == "__main__":

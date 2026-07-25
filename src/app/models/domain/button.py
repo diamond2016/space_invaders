@@ -1,4 +1,5 @@
 from turtle import Turtle
+
 from app.core.config import BUTTON_FONT, BUTTON_START_POS
 
 button_start = Turtle()

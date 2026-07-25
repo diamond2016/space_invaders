@@ -1,11 +1,12 @@
 from turtle import Turtle
+
+from app.assets import ASSET_PATH
 from app.core.config import (
     BULLET_BOTTOM_LIMIT,
     BULLET_COLLISION_DISTANCE,
     BULLET_MOVE_DISTANCE,
     BULLET_TOP_LIMIT,
 )
-from app.assets import ASSET_PATH
 
 
 class Bullet(Turtle):
