@@ -21,7 +21,23 @@ target-version = ['py314']
 include = '\.pyi?$'
 
 [tool.ruff]
+# Set the maximum line length
 line-length = 88
+
+# Where to look for code
+src = ["src"]
+
+[tool.ruff.lint]
+# Specify which rules to enable
+# "E" and "F" are Flake8 rules, "I" is isort (imports)
+select = ["E", "F", "I", "UP", "N"]
+
+# Specify which rules to ignore
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+# Configuration for import sorting
+combine-as-imports = true
 
 [build-system]
 requires = ["setuptools", "wheel"]
