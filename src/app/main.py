@@ -1,17 +1,18 @@
-from turtle import Screen
-from app.models.domain.alien_tile import Alien_Tile
-from app.models.domain.bullet import Bullet
+import random
 import time
+from turtle import Screen
+
 from app.core.config import (
     ALIEN_FIRE_TICK,
     BULLET_MOVE_SPEED,
     GUN_INITIAL_POSITION,
-    SCREEN_WIDTH,
     SCREEN_HEIGHT,
+    SCREEN_WIDTH,
     print_config,
 )
+from app.models.domain.alien_tile import Alien_Tile
+from app.models.domain.bullet import Bullet
 from app.models.domain.gun import Gun
-import random
 
 screen = Screen()
 screen.bgcolor("black")
@@ -23,14 +24,7 @@ gun = Gun(GUN_INITIAL_POSITION)
 bullets = []  # contain bullets active fired from the gun, and on the screen
 alien_fire_counter = 0
 alien_tiles = []
-
-
-screen.listen()
-screen.onkey(gun.go_left, "Left")
-screen.onkey(gun.go_right, "Right")
-
-print("Starting the game...")
-print_config()
+game_is_on: bool = True
 
 
 def start_game():
@@ -98,19 +92,7 @@ def update_alien_positions():
         alien_fire_counter = 0
 
 
-screen.onkey(start_game, "s")
-screen.onkey(end_game, "q")
-screen.onkey(fire_grenade, "space")
-
-
-game_is_on = True
-screen.update()
-print(
-    "Game started. Press 's' to start/restart the game, 'q' to quit, <space> to fire."
-)
-
-
-def game_loop():
+def game_loop() -> None:
     global game_is_on, screen, ball, paddle, gun
     while game_is_on:
         screen.update()
@@ -125,6 +107,26 @@ def game_loop():
             end_game()
 
         time.sleep(BULLET_MOVE_SPEED / 1000)
+        screen.exitonclick()
 
 
-screen.exitonclick()
+def main() -> None:
+    screen.listen()
+    screen.onkey(gun.go_left, "Left")
+    screen.onkey(gun.go_right, "Right")
+
+    print("Starting the game...")
+    print_config()
+    screen.onkey(start_game, "s")
+    screen.onkey(end_game, "q")
+    screen.onkey(fire_grenade, "space")
+
+    screen.update()
+    print(
+        "Game started. Press 's' to start/restart the game, 'q' to quit, <space> to fire."
+    )
+    game_loop()
+
+
+if __name__ == "__main__":
+    main()

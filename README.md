@@ -8,3 +8,7 @@ This is an example on small screen:
 Technology: Python (Turtle included)
 
 220726 updated folders structure (main in src/app) and added hook for black formatting
+
+25.07.2026 added linter ruff
+- Lint: uv run ruff check .
+- Format: uv run ruff format .

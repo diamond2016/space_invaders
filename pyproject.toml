@@ -9,6 +9,7 @@ dependencies = []
 [dependency-groups]
 dev = [
     "black>=24.0.0",
+    "ruff>=0.16.0"
 ]
 
 [project.scripts]
@@ -18,6 +19,9 @@ run = "app.main:main"
 line-length = 88
 target-version = ['py314']
 include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 88
 
 [build-system]
 requires = ["setuptools", "wheel"]

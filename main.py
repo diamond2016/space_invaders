@@ -1,11 +1,12 @@
-from curses import window
-from turtle import Screen, Turtle
-from alien_tile import Alien_Tile
-from bullet import Bullet
+from turtle import Screen
 import time
-from config import ALIEN_FIRE_TICK, BULLET_MOVE_SPEED, GUN_INITIAL_POSITION, SCREEN_WIDTH, SCREEN_HEIGHT, print_config
-from gun import Gun
 import random
+
+from app.models.domain.alien_tile import Alien_Tile
+from app.models.domain.bullet import Bullet
+from app.models.domain.gun import Gun
+from app.core.config import ALIEN_FIRE_TICK, BULLET_MOVE_SPEED, GUN_INITIAL_POSITION, SCREEN_WIDTH, SCREEN_HEIGHT, print_config
+
 
 screen = Screen()
 screen.bgcolor("black")
@@ -14,9 +15,9 @@ screen.title("Space Invaders")
 screen.tracer(0)
 
 gun = Gun(GUN_INITIAL_POSITION)
-bullets = [] # contain bullets active fired from the gun, and on the screen
+bullets: list[Bullet] = [] # contain bullets active fired from the gun, and on the screen
 alien_fire_counter = 0
-alien_tiles = []
+alien_tiles: list[Alien_Tile] = []
 
 
 screen.listen()
@@ -55,7 +56,6 @@ def fire_missile(alien):
     new_bullet.fire(bullets)
 
 def update_bullets():
-    global bullets, tiles, screen
     for bullet in bullets:
         if bullet.isvisible() and bullet.bullet_type == "grenade":
             bullet.go_up()
