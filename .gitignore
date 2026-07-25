@@ -155,9 +155,7 @@ Thumbs.db
 # Example: config files with sensitive data
 # config.ini
 # secrets.json
-TASK.md
-PROJECT_SPECS.md
-img/piskel/
+docs/
 
 # Temporary files
 *.tmp

@@ -44,6 +44,44 @@ TILE_TOP_LIMIT = (SCREEN_HEIGHT / 2) - TILE_PADY
 TILE_BOTTOM_LIMIT = -(SCREEN_HEIGHT / 2) + TILE_PADY
 
 
+def calculate_dimensions(level_count=0):
+    base_rows = TILE_ROWS
+    base_cols = TILE_COLUMNS
+    new_rows = base_rows + level_count
+    new_cols = base_cols + (2 * level_count)
+    new_width = SCREEN_WIDTH + (ALIEN_1_WIDTH * 2)
+    new_height = SCREEN_HEIGHT + (ALIEN_1_HEIGHT * level_count)
+    return new_width, new_height, new_rows, new_cols
+
+
+def recalculate_limits(width, height, rows, cols):
+    new_padx = 60
+    new_pady = 30
+    new_left_limit = -(width / 2) + new_padx
+    new_right_limit = (width / 2) - new_padx
+    new_top_limit = (height / 2) - new_pady
+    new_bottom_limit = -(height / 2) + new_pady
+    return new_left_limit, new_right_limit, new_top_limit, new_bottom_limit
+
+
+def update_config_for_level(level_count=0):
+    global SCREEN_WIDTH, SCREEN_HEIGHT, TILE_ROWS, TILE_COLUMNS, TILE_LEFT_LIMIT, TILE_RIGHT_LIMIT, TILE_TOP_LIMIT, TILE_BOTTOM_LIMIT, GUN_LEFT_LIMIT, GUN_RIGHT_LIMIT, BULLET_BOTTOM_LIMIT, BULLET_TOP_LIMIT, BUTTON_START_POS
+    new_width, new_height, new_rows, new_cols = calculate_dimensions(level_count)
+    SCREEN_WIDTH = new_width
+    SCREEN_HEIGHT = new_height
+    TILE_ROWS = new_rows
+    TILE_COLUMNS = new_cols
+    TILE_LEFT_LIMIT = -(new_width / 2) + TILE_PADX
+    TILE_RIGHT_LIMIT = (new_width / 2) - TILE_PADX
+    TILE_TOP_LIMIT = (new_height / 2) - TILE_PADY
+    TILE_BOTTOM_LIMIT = -(new_height / 2) + TILE_PADY
+    GUN_LEFT_LIMIT = -(new_width / 2) + 30
+    GUN_RIGHT_LIMIT = (new_width / 2) - 30
+    BULLET_BOTTOM_LIMIT = -(new_height / 2) + 30
+    BULLET_TOP_LIMIT = (new_height / 2) - 30
+    BUTTON_START_POS = (GUN_LEFT_LIMIT - 10, GUN_VER_LIMIT - 10)
+
+
 def print_config():
     print(f"SCREEN_WIDTH: {SCREEN_WIDTH}")
     print(f"SCREEN_HEIGHT: {SCREEN_HEIGHT}")

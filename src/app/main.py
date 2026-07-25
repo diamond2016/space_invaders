@@ -8,7 +8,10 @@ from app.core.config import (
     GUN_INITIAL_POSITION,
     SCREEN_HEIGHT,
     SCREEN_WIDTH,
+    TILE_ROWS,
+    TILE_COLUMNS,
     print_config,
+    update_config_for_level,
 )
 from app.models.domain.alien_tile import Alien_Tile
 from app.models.domain.bullet import Bullet
@@ -25,12 +28,17 @@ bullets = []  # contain bullets active fired from the gun, and on the screen
 alien_fire_counter = 0
 alien_tiles = []
 game_is_on: bool = True
+level_count = 0
 
 
 def start_game():
-    global game_is_on, alien_tiles, alien_fire_counter
+    global game_is_on, alien_tiles, alien_fire_counter, level_count, bullets
     alien_fire_counter = 0
-    alien_tiles = Alien_Tile.create_alien_tiles()
+    level_count = 0
+    bullets = []
+    update_config_for_level(level_count)
+    screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
+    alien_tiles = Alien_Tile.create_alien_tiles(TILE_ROWS, TILE_COLUMNS)
     game_is_on = True
     gun.showturtle()
 
@@ -92,6 +100,7 @@ def update_alien_positions():
 
 
 def main() -> None:
+    global alien_tiles, level_count
     print("Starting the game...")
     print_config()
 
@@ -104,6 +113,7 @@ def main() -> None:
     print(
         "Game started. Press 's' to start/restart the game, 'q' to quit, <space> to fire."
     )
+    alien_tiles = []
     while game_is_on:
         screen.update()
 
@@ -115,6 +125,16 @@ def main() -> None:
         if Bullet.collide_gun(gun, bullets):
             print("Gun hit by missile! Game Over.")
             end_game()
+
+        # Check if level is complete (all aliens destroyed)
+        visible_aliens = [a for a in alien_tiles if a.isvisible()]
+        if not visible_aliens:
+            print(f"Level {level_count} complete! Starting level {level_count + 1}...")
+            level_count += 1
+            update_config_for_level(level_count)
+            screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
+            alien_tiles = Alien_Tile.create_alien_tiles(TILE_ROWS, TILE_COLUMNS)
+            gun.showturtle()
 
         time.sleep(BULLET_MOVE_SPEED / 1000)
 

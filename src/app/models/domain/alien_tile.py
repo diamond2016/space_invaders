@@ -1,11 +1,7 @@
 from app.core.config import (
     BULLET_COLLISION_DISTANCE,
-    TILE_COLUMNS,
-    TILE_LEFT_LIMIT,
-    TILE_ROWS,
     TILE_SEP_X,
     TILE_SEP_Y,
-    TILE_TOP_LIMIT,
 )
 
 from .alien import Alien
@@ -15,12 +11,12 @@ from .bullet import Bullet
 class Alien_Tile:
 
     @staticmethod
-    def create_alien_tiles():
+    def create_alien_tiles(rows, cols):
         tiles = []
-        for row in range(TILE_ROWS):
-            for col in range(TILE_COLUMNS):
-                x = TILE_LEFT_LIMIT + col * TILE_SEP_X
-                y = TILE_TOP_LIMIT - row * TILE_SEP_Y
+        for row in range(rows):
+            for col in range(cols):
+                x = -(cols * TILE_SEP_X) / 2 + col * TILE_SEP_X
+                y = (rows * TILE_SEP_Y) / 2 - row * TILE_SEP_Y
                 t = (col + row) % 3
                 match t:
                     case 0:
