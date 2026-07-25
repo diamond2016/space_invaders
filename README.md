@@ -1,14 +1,18 @@
 ### Space invaders game
 The classic game, invaders attack earth, you have to defend it!.
 
+start with `uv run run`
+and then `s`
+
 This is an example on small screen:
 
 ![space invaders screenshot](example1.png)
 
 Technology: Python (Turtle included)
 
-220726 updated folders structure (main in src/app) and added hook for black formatting (config in .git/hooks/pre-commit)
+- 220726 updated folders structure (main in src/app) and added hook for black formatting (config in .git/hooks/pre-commit)
 
-25.07.2026 added linter ruff
-- Lint: uv run ruff check . --fix
-- Format: uv run ruff format .
+- 25.07.2026 added linter ruff
+
+Lint: uv run ruff check . --fix
+Format: uv run ruff format .
